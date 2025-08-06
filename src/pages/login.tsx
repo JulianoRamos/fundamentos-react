@@ -3,6 +3,7 @@ import NextLink from "next/link";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { PasswordInput } from "@/components/ui/password-input";
+
 import loginImage from "../../public/assets/login-image.gif";
 
 export default function Login() {
