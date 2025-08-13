@@ -1,10 +1,14 @@
 import { Button, Link as ChakraLink, Field, Flex, Heading, HStack, Image, Input, Stack, Text, VStack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { Checkbox } from "@/components/ui/checkbox";
 import { PasswordInput } from "@/components/ui/password-input";
+import { toaster } from "@/components/ui/toaster";
+import { useSession } from "@/contexts/SessionContext";
 import loginImage from "../../public/assets/login-image.gif";
 
 const signInFormSchema = z.object({
@@ -15,13 +19,35 @@ const signInFormSchema = z.object({
 type SignInFormData = z.infer<typeof signInFormSchema>;
 
 export default function Login() {
+  const { user, signIn } = useSession();
+
+  const router = useRouter();
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(signInFormSchema)
   });
 
-  function handleSignIn(data: SignInFormData) {
-    console.log(data);
+  async function handleSignIn({ email, password }: SignInFormData) {
+    const promise = new Promise<void>(async (resolve, reject) => {
+      try {
+        await signIn({ email, password });
+        resolve();
+        router.push('/');
+      } catch {
+        reject();
+      }
+    });
+
+    toaster.promise(promise, {
+      success: { title: 'Login realizado com sucesso.' },
+      error: { title: 'E-mail ou senha incorretos.' },
+      loading: { title: 'Carregando informações do usuário, aguarde...' }
+    });
   }
+
+  useEffect(() => {
+    console.log(user);
+  }, [user])
 
   return (
     <Flex w="100vw" h="100vh">
@@ -47,7 +73,7 @@ export default function Login() {
               <Field.Label color="gray.500" fontSize="md">
                 Senha
               </Field.Label>
-              <PasswordInput h={16} colorPalette="blue" borderRadius="md" {...register("password")} />
+              <PasswordInput h={16} colorPalette="blue" borderRadius="md" color="black" {...register("password")} />
               <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
             </Field.Root>
 
