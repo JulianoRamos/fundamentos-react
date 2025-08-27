@@ -1,11 +1,9 @@
 import { Flex, Group, IconButton, Image, Separator } from "@chakra-ui/react";
 import { IoMdHelpCircle, IoMdMenu, IoMdMoon, IoMdNotifications, IoMdSettings, IoMdSunny } from "react-icons/io";
 
-import logoBranco from "../../../public/assets/logo-cesul-branco.png";
-import logoPreto from "../../../public/assets/logo-cesul-preto.png";
-
 import { Avatar } from "../ui/avatar";
 import { useColorMode } from "../ui/color-mode";
+import { Logo } from "./Logo";
 
 export function DefaultHeader() {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -17,11 +15,7 @@ export function DefaultHeader() {
             <IoMdMenu />
           </IconButton>
 
-          {
-            colorMode === 'dark' ?
-              <Image w="130px" h="60px" src={logoBranco.src} /> :
-              <Image w="110px" h="60px" src={logoPreto.src} />
-          }
+          <Logo />
         </Flex>
 
         <Group>
