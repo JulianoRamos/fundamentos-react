@@ -10,7 +10,7 @@ import { Settings } from "./Settings";
 
 export function DefaultHeader() {
   return (
-    <Flex w="full" justify="space-between" borderBottomWidth={1} py={2} px={4}>
+    <Flex as="header" w="full" justify="space-between" borderBottomWidth={1} py={2} px={4}>
         <Flex align="center" gap={4}>
           <Menu />
 
