@@ -90,7 +90,7 @@ export default function Home() {
           <Card.Header>
             <Card.Title>Atividades Recentes</Card.Title>
           </Card.Header>
-          <Card.Body gap={10}>
+          <Card.Body gap={8}>
             {recentActivities.map((activity) => {
               const ActivityIcon = iconMap[activity.type] ?? AiFillQuestionCircle;
               return (
