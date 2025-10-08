@@ -1,10 +1,10 @@
 import { IconButton } from "@chakra-ui/react";
-import { IoMdNotifications } from "react-icons/io";
+import { LuBell } from "react-icons/lu";
 
 export function Notifications() {
   return (
     <IconButton variant="ghost" rounded="full">
-      <IoMdNotifications />
+      <LuBell />
     </IconButton>
   );
 }

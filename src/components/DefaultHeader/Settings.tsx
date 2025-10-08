@@ -1,10 +1,10 @@
 import { IconButton } from "@chakra-ui/react";
-import { IoMdSettings } from "react-icons/io";
+import { LuSettings } from "react-icons/lu";
 
 export function Settings() {
   return (
     <IconButton variant="ghost" rounded="full">
-      <IoMdSettings />
+      <LuSettings />
     </IconButton>
   );
 }

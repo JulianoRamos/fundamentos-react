@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/react";
-import { IoMdMoon, IoMdSunny } from "react-icons/io";
+import { LuMoon, LuSun } from "react-icons/lu";
 import { useColorMode } from "../ui/color-mode";
 
 export function ColorMode() {
@@ -7,7 +7,7 @@ export function ColorMode() {
 
   return (
     <IconButton variant="ghost" rounded="full" onClick={toggleColorMode}>
-      {colorMode === 'dark' ? <IoMdMoon /> : <IoMdSunny />}
+      {colorMode === 'dark' ? <LuMoon /> : <LuSun />}
     </IconButton>
   );
 }
