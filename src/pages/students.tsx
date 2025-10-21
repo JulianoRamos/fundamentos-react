@@ -1,6 +1,6 @@
 import { VStack} from "@chakra-ui/react";
 import { createColumnHelper } from "@tanstack/react-table";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StudentsHeader } from "@/components/StudentsHeader";
 import { Table } from "@/components/Table";
 import { DefaultLayout } from "@/layouts/DefaultLayout";
@@ -13,6 +13,10 @@ type Student = {
   semester: string,
   status: string,
   enrollment: string,
+}
+
+type GetStudentResponse = {
+  students: Student[];
 }
 
 export default function Students() {
@@ -124,11 +128,13 @@ export default function Students() {
     }),
   ];
 
+  const [students, setStudents] = useState<Student[]>([]);
+
   useEffect(() => {
     async function load() {
-      const { data } = await api.get('/students');
+      const { data } = await api.get<GetStudentResponse>('/students');
 
-      console.log(data);
+      setStudents(data.students);
     }
 
     load();
@@ -142,7 +148,7 @@ export default function Students() {
       <VStack align="start">
         <StudentsHeader />
 
-        <Table data={data} columns={columns} />
+        <Table data={students} columns={columns} />
       </VStack>
     </DefaultLayout>
   )
