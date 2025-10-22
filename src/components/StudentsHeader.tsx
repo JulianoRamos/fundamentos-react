@@ -1,6 +1,7 @@
 import { Card, createListCollection, HStack, SimpleGrid } from "@chakra-ui/react";
 import { useState } from "react";
 import { AddButton } from "./AddButton";
+import { AddStudentDialog } from "./AddStudentDialog";
 import { ExportButton } from "./ExportButton";
 import { FilterButton } from "./FilterButton";
 import { FilterSelect } from "./FilterSelect";
@@ -39,9 +40,7 @@ export function StudentsHeader() {
 
             <ExportButton onClick={() => console.log()} />
 
-            <AddButton>
-              Novo Estudante
-            </AddButton>
+            <AddStudentDialog />
           </HStack>
         </SimpleGrid>
       </Card.Body>

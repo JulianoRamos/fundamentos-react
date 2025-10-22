@@ -130,15 +130,15 @@ export default function Students() {
 
   const [students, setStudents] = useState<Student[]>([]);
 
-  useEffect(() => {
-    async function load() {
-      const { data } = await api.get<GetStudentResponse>('/students');
+  // useEffect(() => {
+  //   async function load() {
+  //     const { data } = await api.get<GetStudentResponse>('/students');
 
-      setStudents(data.students);
-    }
+  //     setStudents(data.students);
+  //   }
 
-    load();
-  }, []);
+  //   load();
+  // }, []);
 
   return (
     <DefaultLayout
@@ -148,7 +148,7 @@ export default function Students() {
       <VStack align="start">
         <StudentsHeader />
 
-        <Table data={students} columns={columns} />
+        <Table data={data} columns={columns} />
       </VStack>
     </DefaultLayout>
   )
