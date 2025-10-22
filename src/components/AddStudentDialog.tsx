@@ -1,4 +1,4 @@
-import { Button, CloseButton, createListCollection, Dialog, HStack, Input, Portal, Select } from "@chakra-ui/react";
+import { Button, CloseButton, createListCollection, Dialog, HStack, Input, Portal, Select, VStack } from "@chakra-ui/react";
 import { AddButton } from "./AddButton";
 import { Field } from "./ui/field";
 
@@ -49,45 +49,21 @@ export function AddStudentDialog() {
               <Dialog.Title>Novo Estudante</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
-              <Field label="Nome Completo">
-                <Input placeholder="Informe o nome completo" />
-              </Field>
+              <VStack gap={4}>
+                <Field label="Nome Completo">
+                  <Input placeholder="Informe o nome completo" />
+                </Field>
 
-              <Field label="Email">
-                <Input placeholder="Informe o email" />
-              </Field>
+                <Field label="Email">
+                  <Input placeholder="Informe o email" />
+                </Field>
 
-              <Select.Root collection={courses}>
-                <Select.HiddenSelect />
-                <Select.Label>Curso</Select.Label>
-                <Select.Control>
-                  <Select.Trigger>
-                    <Select.ValueText placeholder="Selecione um curso" />
-                  </Select.Trigger>
-                  <Select.IndicatorGroup>
-                    <Select.Indicator />
-                  </Select.IndicatorGroup>
-                </Select.Control>
-
-                <Select.Positioner>
-                  <Select.Content>
-                    {courses.items.map((course) => (
-                      <Select.Item item={course} key={course.value}>
-                        {course.label}
-                        <Select.ItemIndicator />
-                      </Select.Item>
-                    ))}
-                  </Select.Content>
-                </Select.Positioner>
-              </Select.Root>
-
-              <HStack>
-                <Select.Root collection={semesters}>
+                <Select.Root collection={courses}>
                   <Select.HiddenSelect />
-                  <Select.Label>Semestre</Select.Label>
+                  <Select.Label>Curso</Select.Label>
                   <Select.Control>
                     <Select.Trigger>
-                      <Select.ValueText placeholder="Selecione um semestre" />
+                      <Select.ValueText placeholder="Selecione um curso" />
                     </Select.Trigger>
                     <Select.IndicatorGroup>
                       <Select.Indicator />
@@ -96,9 +72,9 @@ export function AddStudentDialog() {
 
                   <Select.Positioner>
                     <Select.Content>
-                      {semesters.items.map((semester) => (
-                        <Select.Item item={semester} key={semester.value}>
-                          {semester.label}
+                      {courses.items.map((course) => (
+                        <Select.Item item={course} key={course.value}>
+                          {course.label}
                           <Select.ItemIndicator />
                         </Select.Item>
                       ))}
@@ -106,36 +82,66 @@ export function AddStudentDialog() {
                   </Select.Positioner>
                 </Select.Root>
 
-                <Select.Root collection={status}>
-                  <Select.HiddenSelect />
-                  <Select.Label>Status</Select.Label>
-                  <Select.Control>
-                    <Select.Trigger>
-                      <Select.ValueText placeholder="Selecione um status" />
-                    </Select.Trigger>
-                    <Select.IndicatorGroup>
-                      <Select.Indicator />
-                    </Select.IndicatorGroup>
-                  </Select.Control>
+                <HStack w="full">
+                  <Select.Root collection={semesters}>
+                    <Select.HiddenSelect />
+                    <Select.Label>Semestre</Select.Label>
+                    <Select.Control>
+                      <Select.Trigger>
+                        <Select.ValueText placeholder="Selecione um semestre" />
+                      </Select.Trigger>
+                      <Select.IndicatorGroup>
+                        <Select.Indicator />
+                      </Select.IndicatorGroup>
+                    </Select.Control>
 
-                  <Select.Positioner>
-                    <Select.Content>
-                      {status.items.map((item) => (
-                        <Select.Item item={item} key={item.value}>
-                          {item.label}
-                          <Select.ItemIndicator />
-                        </Select.Item>
-                      ))}
-                    </Select.Content>
-                  </Select.Positioner>
-                </Select.Root>
-              </HStack>
+                    <Select.Positioner>
+                      <Select.Content>
+                        {semesters.items.map((semester) => (
+                          <Select.Item item={semester} key={semester.value}>
+                            {semester.label}
+                            <Select.ItemIndicator />
+                          </Select.Item>
+                        ))}
+                      </Select.Content>
+                    </Select.Positioner>
+                  </Select.Root>
+
+                  <Select.Root collection={status}>
+                    <Select.HiddenSelect />
+                    <Select.Label>Status</Select.Label>
+                    <Select.Control>
+                      <Select.Trigger>
+                        <Select.ValueText placeholder="Selecione um status" />
+                      </Select.Trigger>
+                      <Select.IndicatorGroup>
+                        <Select.Indicator />
+                      </Select.IndicatorGroup>
+                    </Select.Control>
+
+                    <Select.Positioner>
+                      <Select.Content>
+                        {status.items.map((item) => (
+                          <Select.Item item={item} key={item.value}>
+                            {item.label}
+                            <Select.ItemIndicator />
+                          </Select.Item>
+                        ))}
+                      </Select.Content>
+                    </Select.Positioner>
+                  </Select.Root>
+                </HStack>
+
+                <Field label="Data de Matrícula">
+                  <Input type="date" placeholder="Informe o email" />
+                </Field>
+              </VStack>
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
                 <Button variant="outline">Cancelar</Button>
               </Dialog.ActionTrigger>
-              <Button>Criar Estudante</Button>
+              <Button colorPalette="purple">Criar Estudante</Button>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
               <CloseButton size="sm" />
